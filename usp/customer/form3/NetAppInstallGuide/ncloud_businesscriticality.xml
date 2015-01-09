@@ -1,0 +1,9 @@
+<chart caption='Business Critical Apps Breakdown' xAxisName='Criticality' yAxisName='# of Apps Supported' showValues='0'>
+
+   <set label='Highly Critical' value='4' />
+   <set label='Critical' value='23' />
+   <set label='Standard' value='22' />
+   <set label='Low Criticality' value='3' />
+
+</chart>
+

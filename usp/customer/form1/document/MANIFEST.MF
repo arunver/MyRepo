@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+dar-version-dhansak: 3.0.0.23.1_dhansak
+Class-Path: com.netapp.wfa.cache.model.ScriptDataProviderType:com.neta
+ pp.wfa.cache.model.SqlDataProviderType:com.netapp.wfa.engine.workflow
+ .table.TabularWorkflow:com.netapp.wfa.finders.model.scheme.Scheme:com
+ .netapp.wfa.engine.context.functions.FunctionDefinition:com.netapp.wf
+ a.finders.model.filter.Filter:com.netapp.wfa.cache.model.CacheQuery:c
+ om.netapp.wfa.command.model.CommandDefinition:com.netapp.wfa.finders.
+ model.policies.Policy:com.netapp.wfa.finders.model.finder.Finder:com.
+ netapp.wfa.finders.model.dictionary.DictionaryEntry:com.netapp.wfa.en
+ gine.category.Category:
+dar-version-calamari_versioning: 2.2.0.1.1_calamari_versioning
+dar-version: 3.0.0.0.0
+dar-version-dhansak_wfentity: 3.0.0.4.1_dhansak_wfentity
+dar-version-calamari: 2.2.0.12.6_calamari
+dar-version-dhansak_epsilon: 3.0.0.0.1_dhansak_epsilon
+

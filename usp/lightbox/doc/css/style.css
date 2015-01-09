@@ -1,0 +1,129 @@
+/*_________________________________________________________________  wrapper  */
+div#wrapper {
+  margin: 0 auto;
+  width: 622px;
+  margin-bottom: 20px;
+  border: 1px solid #333;
+  padding: 18px 10px;
+  background-color: #FFFFFF;
+}
+
+/*__________________________________________________________________  header  */
+#version {
+  float: right;
+  height: 55px;
+  width: 55px;
+  background-image: url(version.png);
+}
+#header {
+  padding-bottom: 9px;
+}
+/*_____________________________________________________________________  nav  */
+div#nav {
+  font-weight: bold;
+  padding-bottom: 9px;
+  margin-bottom: 18px;
+  border-bottom: 1px dotted #333;
+}
+
+/*__________________________________________________________________  tables  */
+table td.option {
+  font-weight: bold;
+  color: #ff3b9a;
+  padding-left: 0;
+  width: 120px;
+}
+table#features-table tr td {
+  vertical-align: middle;
+  padding: 5px 5px 5px 10px;
+}
+table#features-table tr td.strong {
+  
+  
+  text-align: center;
+  width: 96px;
+  color: #ff3b9a;
+}
+table.thumbs {
+  margin-left: auto;
+  margin-right: auto;
+  width: 450px;
+}
+table.thumbs td {
+  padding: 0;
+  text-align: center;
+  width: 150px;
+}
+table#download-table tr td {
+  vertical-align: middle;
+}
+table#download-table tr td.button-container {
+  width: 150px;
+  text-align: center;
+}
+
+
+/*___________________________________________________________________  demos  */
+#inline-sample-content {
+  padding: 10px;
+}
+#hongkong {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+/*___________________________________________________________________  forms  */
+form p {
+  text-indent: 0;
+}
+form#build-form {
+  padding: 1px 9px;
+  background: url(bg.gif) top left repeat;
+  margin-bottom: 18px;
+}
+form#build-form select {
+  padding-left: 2px;
+}
+input.button, button {
+  padding: 4px 5px;
+ 
+  font-size: 14px;
+  border: 3px double #fff;
+  background-color: #297bc1;
+  color: #fff;
+  cursor: pointer;
+}
+input.button:hover, button:hover {
+  background-color: #ff3b9a;
+}
+
+/*___________________________________________________________________  notes  */
+p.note {
+  text-indent: 0;
+  background-image: url(bg.gif);
+  background-repeat: repeat;
+  padding: 10px;
+  border: 1px dashed #9a11d3;
+}
+p.note span {
+  color: #9a11d3;
+  font-weight: bold;
+}
+
+/*______________________________________________________________________  qa  */
+div.question p, div.answer p {
+  text-indent: 0px;
+}
+div.question span, div.answer span {
+  font-weight: bold;
+  color: #9a11d3;
+  
+}
+
+/*__________________________________________________________________  footer  */
+div#footer {
+  border-top: 1px dotted #333;
+ 	
+  padding: 9px 0 0;
+  text-align: center;
+}

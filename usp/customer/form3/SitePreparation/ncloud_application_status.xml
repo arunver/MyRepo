@@ -1,0 +1,6 @@
+<chart caption='nCloud Application Status'>
+   <set label='Production' value='45' color="0000FF"/>
+   <set label='Proof of Concept' value='8' color="008000"/>
+   <set label='Non-Production(Dev/Test)' value='8'  color="0000FF"/>
+</chart>
+

@@ -1,0 +1,13 @@
+<chart caption='nCloud System Growth' xAxisName='Time' yAxisName='Systems Support' showValues='0' yAxisMaxValue='200'>
+
+   <set label='FY13Q1' value='70' />
+   <set label='FY13Q2' value='90' />
+   <set label='FY13Q3' value='118' />
+   <set label='FY13Q4' value='133' />
+   <set label='FY14Q1' value='126' />
+
+   <trendLines>
+      <line startValue='130' color='009933' displayvalue='Target' /> 
+   </trendLines>
+
+</chart>
