@@ -19,6 +19,7 @@ class MySqlDriver implements DB
 	var $buttonstyle;
 	var $field_values;
 	var $tablename;
+	var $condition;
 	private $host;
 	private $user;
 	private $pass;
@@ -246,7 +247,7 @@ class MySqlDriver implements DB
 			$str		=	"UPDATE ".$this->tablename." "." SET ".$str;
 		else
 			$str		=	"UPDATE ".$this->tablename." "." SET ".$str." WHERE ".$this->condition;
-	// echo "<br>".$str."<br>";exit;
+		// echo "<br>".$str."<br>";exit;
 		$result_up	=	$this->executeQry($str);
 		$q			=	mysql_affected_rows();
 

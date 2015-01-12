@@ -1,0 +1,12 @@
+# BEGIN htaccess
+<IfModule mod_rewrite.c>
+Options -Indexes +FollowSymLinks
+
+RewriteEngine on 
+RewriteCond %{HTTP_REFERER} !^http://(www\.)?localhost [NC] 
+RewriteCond %{HTTP_REFERER} !^http://(www\.)?localhost.*$ [NC] 
+RewriteRule \.(php|css)$ - [F]
+
+</IfModule>
+
+# END

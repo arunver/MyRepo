@@ -7,7 +7,7 @@ class Form4 extends MySqlDriver {
 		$obj = new MySqlDriver;  
 	}
        
-	function updateForm4($post)
+	function updateForm4($post,$form_id)
 		{
 			/*  
 				echo "<pre>";
@@ -15,10 +15,11 @@ class Form4 extends MySqlDriver {
 				exit; 
 			*/ 
 			
-			$this->field_values['form4_id'] = $_SESSION['form1_id'];
+		//	$this->field_values['form4_id'] = $_SESSION['form1_id'];
 			
 	      	$now = date('Y-m-d H:i:s');
-			$this->tablename = TBL_FORM4;		
+			$this->tablename = TBL_FORM4;
+			$this->condition = TBL_FORM4."_id='".$form_id."'";			
 
 			$this->field_values['form4_id'] = $_SESSION['form1_id'];
 			

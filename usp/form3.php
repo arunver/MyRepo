@@ -18,26 +18,43 @@ $obj = new validationclass();
 print_r($_SESSION);
 exit; */
 
-$formArray = $formObj->getFormArray($_SESSION['form1_id'],'form3');
+if(isset($_SESSION['form1_id']) || isset($_GET['data']))
+{
+	$form_id = base64_decode($_GET['data']);
 
-$ntap_checked 	= (($formArray['ntap_approve_doc'] == 'on') ? 'checked="checked"' : '');
-$acn_checked 	= (($formArray['acn_approve_doc'] == 'on') ? 'checked="checked"' : '');
-
-if(isset($_POST['form3_submit'])) {
-	 $_SESSION['form3_isdone'] = $_POST['form3_submit'];
-	
-	$_POST = postwithoutspace($_POST);
-	
-	if(!empty($formArray))
+	if(!empty($form_id))
 	{
-		$formObj->updateForm3($_POST);
+		//$_SESSION['form1_id'] = $form_id;
+		$formArray = $formObj->getFormArray($form_id,'form3');
+	} else{
+		$formArray = $formObj->getFormArray($_SESSION['form1_id'],'form3');
+	} 
+
+
+	$ntap_checked 	= (($formArray['ntap_approve_doc'] == 'on') ? 'checked="checked"' : '');
+	$acn_checked 	= (($formArray['acn_approve_doc'] == 'on') ? 'checked="checked"' : '');
+
+	if(isset($_POST['form3_submit'])) {
+		 $_SESSION['form3_isdone'] = $_POST['form3_submit'];
+		
+		$_POST = postwithoutspace($_POST);
+		
+		if(!empty($formArray))
+		{
+			$formObj->updateForm3($_POST,$form_id);
+		}
+		else{
+			$formObj->addForm3($_POST);
+		}	
+	    
+		exit;
+	  
 	}
-	else{
-		$formObj->addForm3($_POST);
-	}	
-    
-	exit;
-  
+
+}
+else
+{
+	echo"<script>window.location.href='form1.php'</script>";
 }
 ?>
 

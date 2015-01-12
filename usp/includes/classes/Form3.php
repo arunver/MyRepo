@@ -7,17 +7,17 @@ class Form3 extends MySqlDriver {
 		$obj = new MySqlDriver;  
 	}
       
-	function updateForm3($post)
+	function updateForm3($post,$form_id)
 		{
 			/*  
 				echo "<pre>";
 				print_r($_POST);
 				exit; 
 			*/ 
-			$this->field_values['form3_id'] = $_SESSION['form1_id'];
-			
+						
 	      	$now = date('Y-m-d H:i:s');
-			$this->tablename = TBL_FORM3;		
+			$this->tablename = TBL_FORM3;
+			$this->condition = TBL_FORM3."_id='".$form_id."'";			
 
 			$ussfileName 	= $_FILES["uss_file"]["name"]; 
 			$ussSource 		= $_FILES["uss_file"]["tmp_name"];

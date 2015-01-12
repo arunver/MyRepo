@@ -7,17 +7,18 @@ class Form5 extends MySqlDriver {
 		$obj = new MySqlDriver;  
 	}
       
-	 function updateForm5($post)
+	 function updateForm5($post,$form_id)
 		{
 			/*  
 				echo "<pre>";
 				print_r($_POST);
 				exit; 
 			*/ 
-			$this->field_values['form5_id'] = $_SESSION['form1_id'];
+		//	$this->field_values['form5_id'] = $_SESSION['form1_id'];
 			
 	      	$now = date('Y-m-d H:i:s');
 			$this->tablename = TBL_FORM5;		
+			$this->condition = TBL_FORM5."_id='".$form_id."'";		
 
 			$this->field_values['form5_id'] = $_SESSION['form1_id'];
 			

@@ -14,31 +14,59 @@ $generalObj = new GeneralFunctions();
 require_once('validation_class.php');
 $obj = new validationclass();
 
-$formArray = $formObj->getFormArray($_SESSION['form1_id'],'form2');
+if(isset($_SESSION['form1_id']) || isset($_GET['data']))
+{
+
+$form_id = base64_decode($_GET['data']);
+
+if(!empty($form_id))
+{
+	//$_SESSION['form1_id'] = $form_id;
+	$formArray = $formObj->getFormArray($form_id,'form2');
+} else{
+	$formArray = $formObj->getFormArray($_SESSION['form1_id'],'form2');
+} 
+
 
 $ntap_checked 	= (($formArray['ntap_agr_flag'] == 'on') ? 'checked="checked"' : '');
 $acn_checked 	= (($formArray['acn_agr_flag'] == 'on') ? 'checked="checked"' : '');
 $admin_checked 	= (($formArray['admin_action_flag'] == 'on') ? 'checked="checked"' : '');
 
-$pcsn_no = $formObj->fetchValue(TBL_FORM1, "pcsn_num", "form1_id='".$_SESSION['form1_id']."'");
 
-if(isset($_POST['form2_submit'])) {
-	 $_SESSION['form2_isdone'] = $_POST['form2_submit'];
+if(isset($_GET['data']))
+{
+	$id= base64_decode($_GET['data']);
+	$pcsn_no= $formObj->fetchValue(TBL_FORM1, "pcsn_num", "form1_id='".$id."'");
+}
+else
+{
+	$pcsn_no = $formObj->fetchValue(TBL_FORM1, "pcsn_num", "form1_id='".$_SESSION['form1_id']."'");
+}
+
+	if(isset($_POST['form2_submit'])) {
+		 $_SESSION['form2_isdone'] = $_POST['form2_submit'];
+		
+	  $_POST = postwithoutspace($_POST);
+	  
+	  if(!empty($formArray) && isset($_GET['data']))
+	  {
+		$formObj->updateForm2($_POST,$form_id);
+	  }
+	  else{
+		$formObj->addForm2($_POST);
+	  }
+	  
+	  
+	  exit;
+	  
+	  
+	}
 	
-  $_POST = postwithoutspace($_POST);
-  
-  if(!empty($formArray))
-  {
-	$formObj->updateForm2($_POST);
-  }
-  else{
-	$formObj->addForm2($_POST);
-  }
-  
-  
-  exit;
-  
-  
+}
+else
+{
+	echo"<script>window.location.href='form1.php'</script>";
+
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

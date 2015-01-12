@@ -7,7 +7,7 @@ class Form2 extends MySqlDriver {
 		$obj = new MySqlDriver;  
 	}
         
-	function updateForm2($post)
+	function updateForm2($post,$form_id)
 		{
 			 /* 
 				 echo "<pre>";
@@ -17,6 +17,7 @@ class Form2 extends MySqlDriver {
 			
 	      	$now = date('Y-m-d H:i:s');
 			$this->tablename = TBL_FORM2;	
+			$this->condition = TBL_FORM2."_id='".$form_id."'";	
 			
 			$filename 	= $_FILES["profile_doc_file"]["name"]; 
 			$source 	= $_FILES["profile_doc_file"]["tmp_name"];

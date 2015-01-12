@@ -7,15 +7,18 @@ class Form1 extends MySqlDriver {
 		$obj = new MySqlDriver;  
 	}
       
-	function updateForm1($post)
+	function updateForm1($post,$form1_id)
 		{
 			/* echo "<pre>";
 			 print_r($_POST);
 			 exit; */  
 
+			$name ="form1_id";
 	      	$now = date('Y-m-d H:i:s');
-			$this->tablename = TBL_FORM1;		
-
+			$this->tablename = TBL_FORM1;	
+			$this->condition = TBL_FORM1."_id='".$form_id."'";
+			
+			$this->condition="form1_id=".base64_decode($form1_id);
 			$this->field_values['acn_lead'] 			= $post['acn_lead'];			
 			$this->field_values['acn_email'] 			= $post['acn_email'];
 			$this->field_values['acn_role'] 			= $post['acn_role'];
@@ -30,14 +33,14 @@ class Form1 extends MySqlDriver {
 			$this->field_values['site_loc'] 			= $post['site_loc'];
 			$this->field_values['req_detail'] 			= $post['req_detail'];
 			
-			
+
 			 
 			$res = $this->updateQry();
 			
 			   if($res){					
 				//   $_SESSION['form1_id'] =  $post['form1_id'];
 				   $_SESSION['SESS_MSG'] = msgSuccessFail("success","Form1 data has been updated successfully!!!");	
-				   echo"<script>window.location.href='form2.php'</script>";
+				   echo"<script>window.location.href='form2.php?data=".$form1_id."'</script>";
 				   exit;
 			   }
 		}

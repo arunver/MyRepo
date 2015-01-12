@@ -14,26 +14,42 @@ $generalObj = new GeneralFunctions();
 require_once('validation_class.php');
 $obj = new validationclass();
 
-$formArray = $formObj->getFormArray($_SESSION['form1_id'],'form4');
+if(isset($_SESSION['form1_id']) || isset($_GET['data']))
+{
+	$form_id = base64_decode($_GET['data']);
 
-$ntap_sub_flag 	= (($formArray['ntap_sub_flag'] == 'on') ? 'checked="checked"' : '');
-$ntap_sch_flag 	= (($formArray['ntap_sch_flag'] == 'on') ? 'checked="checked"' : '');
-
-if(isset($_POST['form4_submit'])) {
-	 $_SESSION['form4_isdone'] = $_POST['form4_submit'];
-	 
-	$_POST = postwithoutspace($_POST);
-   
-	if(!empty($formArray))
+	if(!empty($form_id))
 	{
-		$formObj->updateForm4($_POST);
+		//$_SESSION['form1_id'] = $form_id;
+		$formArray = $formObj->getFormArray($form_id,'form4');
+	} else{
+		$formArray = $formObj->getFormArray($_SESSION['form1_id'],'form4');
 	}
-	else{
-		$formObj->addForm4($_POST);
-	}
-   
 	
-	exit;
+
+	$ntap_sub_flag 	= (($formArray['ntap_sub_flag'] == 'on') ? 'checked="checked"' : '');
+	$ntap_sch_flag 	= (($formArray['ntap_sch_flag'] == 'on') ? 'checked="checked"' : '');
+
+	if(isset($_POST['form4_submit'])) {
+		 $_SESSION['form4_isdone'] = $_POST['form4_submit'];
+		 
+		$_POST = postwithoutspace($_POST);
+	   
+		if(!empty($formArray))
+		{
+			$formObj->updateForm4($_POST,$form_id);
+		}
+		else{
+			$formObj->addForm4($_POST);
+		}
+	   
+		
+		exit;
+	}
+}
+else
+{
+	echo"<script>window.location.href='form1.php'</script>";
 }
 ?>
 

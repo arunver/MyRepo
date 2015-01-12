@@ -26,13 +26,14 @@ require_once('validation_class.php');
 $obj = new validationclass();
 
 $form_id = base64_decode($_GET['data']);
+
 if(!empty($form_id))
 {
 	//$_SESSION['form1_id'] = $form_id;
 	$formArray = $formObj->getFormArray($form_id,'form1');
-}else{
+} else{
 	$formArray = $formObj->getFormArray($_SESSION['form1_id'],'form1');
-}
+} 
 
 //$formArray = $formObj->getFormArray(1,'form1');
 
@@ -53,7 +54,7 @@ if(isset($_POST['form1_submit'])) {
   
   if(!empty($formArray))
   {
-	$formObj->updateForm1($_POST);
+	$formObj->updateForm1($_POST,$_GET['data']);
   }
   else{
 	$formObj->addForm1($_POST);

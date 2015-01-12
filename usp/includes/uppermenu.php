@@ -8,9 +8,16 @@
 <ul class="anchor">
 		<li>
 		<?php	
-			if($_SESSION['form1_isdone'] == "1" && $current_page != "form1.php")
-			{
-				$anchor = "<a href='form1.php' class='done'>";	
+			if(($_SESSION['form1_isdone'] == "1" || $_GET['data']) && $current_page != "form1.php")
+			{		
+				if(!empty($_GET['data']))
+				{
+					$anchor = "<a href='form1.php?data=".$_GET['data']."' class='done'>";	
+					
+				}
+				else{
+					$anchor = "<a href='form1.php' class='done'>";	
+				}
 			}
 			else{
 				$class=(($current_page == "form1.php") ? " selected":"disabled");
@@ -29,9 +36,16 @@
 		<?php	
 			if($current_page != "form2.php")
 			{
-				if($_SESSION['form1_isdone'] == "1")
+				if($_SESSION['form1_isdone'] == "1" || $_GET['data'])
 					{
-						$anchor = "<a href='form2.php' class='done'>";							
+						if(!empty($_GET['data']))
+							{
+								$anchor = "<a href='form2.php?data=".$_GET['data']."' class='done'>";	
+								
+							}
+							else{
+								$anchor = "<a href='form2.php' class='done'>";	
+							}											
 					}
 				else
 					{
@@ -55,9 +69,16 @@
 		<?php	
 			if($current_page != "form3.php")
 			{
-				if($_SESSION['form1_isdone'] == "1")
+				if($_SESSION['form1_isdone'] == "1" || $_GET['data'])
 					{
-						$anchor = "<a href='form3.php' class='done'>";							
+						if(!empty($_GET['data']))
+							{
+								$anchor = "<a href='form3.php?data=".$_GET['data']."' class='done'>";	
+								
+							}
+							else{
+								$anchor = "<a href='form3.php' class='done'>";	
+							}			
 					}
 				else
 					{
@@ -82,9 +103,16 @@
 		<?php	
 			if($current_page != "form4.php")
 			{
-				if($_SESSION['form1_isdone'] == "1")
+				if($_SESSION['form1_isdone'] == "1" || $_GET['data'])
 					{
-						$anchor = "<a href='form4.php' class='done'>";							
+						if(!empty($_GET['data']))
+							{
+								$anchor = "<a href='form4.php?data=".$_GET['data']."' class='done'>";	
+								
+							}
+							else{
+								$anchor = "<a href='form4.php' class='done'>";	
+							}												
 					}
 				else
 					{
@@ -109,9 +137,16 @@
 		<?php	
 			if($current_page != "form5.php")
 			{
-				if($_SESSION['form1_isdone'] == "1")
+				if($_SESSION['form1_isdone'] == "1" || $_GET['data'])
 					{
-						$anchor = "<a href='form5.php' class='done'>";							
+						if(!empty($_GET['data']))
+							{
+								$anchor = "<a href='form5.php?data=".$_GET['data']."' class='done'>";	
+								
+							}
+							else{
+								$anchor = "<a href='form5.php' class='done'>";	
+							}											
 					}
 				else
 					{
