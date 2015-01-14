@@ -96,7 +96,7 @@ else
 							style="left: 527px;position: absolute;top: 162px;"
 							-->
 								<li>
-									<input type="checkbox" class="field-style" name="acn_conf_flag" id="acn_conf_flag" <?php echo $acn_conf_flag;?> <?php echo $ntap_readonly;?> data-validation-engine="validate[required]"/>  Accenture Completes Config per spec, then UAT *
+									<input type="checkbox" class="field-style" name="acn_conf_flag" id="acn_conf_flag" <?php echo $acn_conf_flag;?> <?php echo $ntap_readonly;?> />  Accenture Completes Config per spec, then UAT *
 									<input type="text" name="acn_conf_date" id="acn_conf_date" class="field-style" size="32" placeholder="dd-mm-yyyy hh:mm:ss" style="margin-top:20px;" value="<?php echo $formArray['acn_conf_date'];?>" <?php echo $ntap_readonly;?> />
 								</li>	
 							</ul>
@@ -107,7 +107,7 @@ else
 						<LEGEND><b>NetApp User</b></LEGEND>
 							<ul>
 								<li>
-									<input type="checkbox" class="field-style" name="ntap_conf_flag" id="ntap_conf_flag" <?php echo $ntap_conf_flag;?> <?php echo $acn_readonly;?> data-validation-engine="validate[required]"/>  NetApp Completes Installation *
+									<input type="checkbox" class="field-style" name="ntap_conf_flag" id="ntap_conf_flag" <?php echo $ntap_conf_flag;?> <?php echo $acn_readonly;?> />  NetApp Completes Installation *
 									<input type="text" name="ntap_conf_date" id="ntap_conf_date" class="field-style" size="32" placeholder="dd-mm-yyyy hh:mm:ss" style="margin-top:20px;" value="<?php echo $formArray['ntap_conf_date'];?>" <?php echo $acn_readonly;?> />
 								</li>	
 							</ul>

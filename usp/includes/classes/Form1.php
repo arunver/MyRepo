@@ -1,4 +1,8 @@
 <?php
+
+include 'class.phpmailer.php';
+include 'class.smtp.php';
+
 //session_start();
 class Form1 extends MySqlDriver {
 
@@ -7,44 +11,81 @@ class Form1 extends MySqlDriver {
 		$obj = new MySqlDriver;  
 	}
       
-	function updateForm1($post,$form1_id)
+	function updateForm1($post,$form1_id,$adminType)
 		{
 			/* echo "<pre>";
 			 print_r($_POST);
-			 exit; */  
-
+			 exit;
+*/
 			$name ="form1_id";
 	      	$now = date('Y-m-d H:i:s');
 			$this->tablename = TBL_FORM1;	
 			$this->condition = TBL_FORM1."_id='".$form_id."'";
 			
 			$this->condition="form1_id=".base64_decode($form1_id);
-			$this->field_values['acn_lead'] 			= $post['acn_lead'];			
-			$this->field_values['acn_email'] 			= $post['acn_email'];
-			$this->field_values['acn_role'] 			= $post['acn_role'];
-			$this->field_values['acn_phone'] 			= $post['acn_phone'];
+			if($adminType==3)
+			{
+				$this->field_values['acn_lead'] 			= $post['acn_lead'];			
+				$this->field_values['acn_email'] 			= $post['acn_email'];
+				$this->field_values['acn_role'] 			= $post['acn_role'];
+				$this->field_values['acn_phone'] 			= $post['acn_phone'];
+			}
+			else if($adminType==2)
+			{
+				$this->field_values['ntap_lead'] 			= $post['ntap_lead'];
+				$this->field_values['ntap_email'] 			= $post['ntap_email'];
+				$this->field_values['ntap_role'] 			= $post['ntap_role'];
+				$this->field_values['ntap_phone'] 			= $post['ntap_phone'];
+			}
+			else
+			{
+				$this->field_values['acn_lead'] 			= $post['acn_lead'];			
+				$this->field_values['acn_email'] 			= $post['acn_email'];
+				$this->field_values['acn_role'] 			= $post['acn_role'];
+				$this->field_values['acn_phone'] 			= $post['acn_phone'];
+				$this->field_values['ntap_lead'] 			= $post['ntap_lead'];
+				$this->field_values['ntap_email'] 			= $post['ntap_email'];
+				$this->field_values['ntap_role'] 			= $post['ntap_role'];
+				$this->field_values['ntap_phone'] 			= $post['ntap_phone'];
+			}
 			
-			$this->field_values['ntap_lead'] 			= $post['ntap_lead'];
-			$this->field_values['ntap_email'] 			= $post['ntap_email'];
-			$this->field_values['ntap_role'] 			= $post['ntap_role'];
-			$this->field_values['ntap_phone'] 			= $post['ntap_phone'];
+			
+			
 			$this->field_values['pcsn_num'] 			= $post['pcsn_num'];
 			
 			$this->field_values['site_loc'] 			= $post['site_loc'];
 			$this->field_values['req_detail'] 			= $post['req_detail'];
 			
-
+			/*echo "<pre>";
+			print_r($this->field_values);
+			exit;*/
 			 
 			$res = $this->updateQry();
-			
+
 			   if($res){					
 				//   $_SESSION['form1_id'] =  $post['form1_id'];
-				   $_SESSION['SESS_MSG'] = msgSuccessFail("success","Form1 data has been updated successfully!!!");	
+				  
+				   $to='arun.verma@netapp.com';
+				   $name='Arun Verma';
+				   $subject='USP Form1 Updated';
+				   $body='<strong>Form1 has been updated successfully';
+
+				  	$mailValue = $this->sendMail($body, $to, $name, $subject);
+
+					if($mailValue != true)
+					{
+						$_SESSION['SESS_MSG'] = msgSuccessFail("fail",$mailValue);	  
+						echo"<script>window.location.href='form1.php'</script>";
+						exit;
+					}
+
+					$_SESSION['SESS_MSG'] = msgSuccessFail("success","Form1 data has been updated successfully!!!");	
+
 				   echo"<script>window.location.href='form2.php?data=".$form1_id."'</script>";
 				   exit;
 			   }
 		}
-	  
+
     function addForm1($post)
 		{
 			/* echo "<pre>";
@@ -75,11 +116,28 @@ class Form1 extends MySqlDriver {
 		 	 echo "<pre>";
 			print_r($this->field_values);
 			exit;  
-			 */
-			 $res = $this->insertQry();
-	               if($res){
-					   $_SESSION['form1_id'] = $res[1];
-	               	   $_SESSION['SESS_MSG'] = msgSuccessFail("success","Form1 data has been added successfully!!!");	
+			 */		
+					   $res = $this->insertQry();
+		               if($res){
+						   $_SESSION['form1_id'] = $res[1];
+
+							$to='arun.verma@netapp.com';
+							$name='Arun Verma';
+							$subject='USP Form1 Inserted';
+							$body='<strong>Form1 has been inserted successfully';
+
+							$msg = $this->sendMail($body, $to, $name, $subject);
+
+							if($mailValue != true)
+							{
+								$_SESSION['SESS_MSG'] = msgSuccessFail("fail",$mailValue);	  
+								echo"<script>window.location.href='form1.php'</script>";
+								exit;
+							}
+
+		               	   $_SESSION['SESS_MSG'] = msgSuccessFail("success","Form1 data has been added successfully!!!");	
+	               	  
+
 	                   echo"<script>window.location.href='form2.php'</script>";
 	                   exit;
 	               }

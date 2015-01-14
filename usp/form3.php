@@ -143,17 +143,17 @@ else
 							
 							
 							<li>
-							<input type="checkbox" name="acn_siteprep_flag" id="acn_siteprep_flag" <?php echo $acn_checked;?> <?php echo $ntap_readonly;?> data-validation-engine="validate[required]" />Accenture Completes Site Prep
+							<input type="checkbox" name="acn_siteprep_flag" id="acn_siteprep_flag" <?php echo $acn_checked;?> <?php echo $ntap_readonly;?> />Accenture Completes Site Prep
 							<input type="text" name="acn_siteprep_date" id="acn_siteprep_date" class="field-style" size="50" placeholder="dd-mm-yyyy hh:mm:ss" value="<?php echo $formArray['acn_approve_date'];?>" <?php echo $ntap_readonly;?> />
 							</li>
 							
 							<li>
-							<input type="checkbox" name="acn_approve_doc" id="acn_approve_doc" <?php echo $acn_checked;?> <?php echo $ntap_readonly;?> data-validation-engine="validate[required]" />Document Set Approved(ACN)
+							<input type="checkbox" name="acn_approve_doc" id="acn_approve_doc" <?php echo $acn_checked;?> <?php echo $ntap_readonly;?> />Document Set Approved(ACN)
 							<input type="text" name="acn_approve_date" id="acn_approve_date" class="field-style" size="50" placeholder="dd-mm-yyyy hh:mm:ss" value="<?php echo $formArray['acn_approve_date'];?>" <?php echo $ntap_readonly;?> />
 							</li>							
 							
 							<li>
-							<input type="checkbox" name="ntap_approve_doc" id="ntap_approve_doc" <?php echo $ntap_checked;?> <?php echo $acn_readonly;?> data-validation-engine="validate[required]" /> Document Set Approved(NTAP)
+							<input type="checkbox" name="ntap_approve_doc" id="ntap_approve_doc" <?php echo $ntap_checked;?> <?php echo $acn_readonly;?> /> Document Set Approved(NTAP)
 							<input type="text" name="ntap_approve_date" id="ntap_approve_date" class="field-style" size="50" placeholder="dd-mm-yyyy hh:mm:ss"  value="<?php echo $formArray['ntap_approve_date'];?>" <?php echo $acn_readonly;?> />
 							</li>
 							

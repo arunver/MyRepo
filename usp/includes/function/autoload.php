@@ -10,7 +10,7 @@ function __autoload($class_name) {
 				}
 			else
 				{
-				//	echo "not exist : ".$file;
+				//	echo "not exist : ".$file; 
 					die('File Not Found');
 				}
 				

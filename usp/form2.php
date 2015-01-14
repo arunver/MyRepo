@@ -139,10 +139,10 @@ else
 							<li>
 							<label class="label align-left">Agreement on Config *</label>
 								
-								<input type="checkbox" class="field-style" name="acn_agr_flag" id="acn_agr_flag" <?php echo $acn_checked;?> <?php echo $ntap_readonly;?> data-validation-engine="validate[required]" />  <label class="label align-left">Accenture agrees?</label>
+								<input type="checkbox" class="field-style" name="acn_agr_flag" id="acn_agr_flag" <?php echo $acn_checked;?> <?php echo $ntap_readonly;?> />  <label class="label align-left">Accenture agrees?</label>
 								<input type="text" id="acn_agr_date" name="acn_agr_date" class="field-style" size="30" placeholder="dd-mm-yyyy-hh:mm:ss" style="left: 276px;position: absolute;top: 310px;" value="<?php echo $formArray['acn_agr_date'];?>" <?php echo $ntap_readonly;?> />
 							
-							<input type="checkbox" class="field-style" name="ntap_agr_flag" id="ntap_agr_flag" <?php echo $ntap_checked;?> <?php echo $acn_readonly;?> data-validation-engine="validate[required]" /><label class="label align-left">NetApp agrees?</label>  
+							<input type="checkbox" class="field-style" name="ntap_agr_flag" id="ntap_agr_flag" <?php echo $ntap_checked;?> <?php echo $acn_readonly;?> /><label class="label align-left">NetApp agrees?</label>  
 							<input type="text" name="ntap_agr_date" id="ntap_agr_date" class="field-style" size="30" placeholder="dd-mm-yyyy hh:mm:ss" style="left: 509px;position: absolute;top: 310px;" value="<?php echo $formArray['ntap_agr_date'];?>" <?php echo $acn_readonly;?> />
 												
 							
@@ -156,7 +156,7 @@ else
 							
 							<li>
 							<label class="label align-left">Action Completed *</label>
-							<input type="checkbox" class="field-style" name="admin_action_flag" id="admin_action_flag" <?php echo $admin_checked;?> <?php echo $admin_readonly;?> data-validation-engine="validate[required]" />  (Only For Admin User)
+							<input type="checkbox" class="field-style" name="admin_action_flag" id="admin_action_flag" <?php echo $admin_checked;?> <?php echo $admin_readonly;?> />  (Only For Admin User)
 							</li>
 							
 							<li>

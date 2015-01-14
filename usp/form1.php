@@ -27,6 +27,7 @@ $obj = new validationclass();
 
 $form_id = base64_decode($_GET['data']);
 
+
 if(!empty($form_id))
 {
 	//$_SESSION['form1_id'] = $form_id;
@@ -54,7 +55,7 @@ if(isset($_POST['form1_submit'])) {
   
   if(!empty($formArray))
   {
-	$formObj->updateForm1($_POST,$_GET['data']);
+	$formObj->updateForm1($_POST,$_GET['data'], $_SESSION['ADMIN_TYPE']);
   }
   else{
 	$formObj->addForm1($_POST);

@@ -99,10 +99,10 @@ else
 							<ul>				
 								<li>					
 									<label class="label align-left" style="width:100px;"></label>
-									<input type="checkbox" class="field-style" name="ntap_sub_flag" id="ntap_sub_flag" <?php echo $ntap_sub_flag;?> <?php echo $acn_readonly;?> data-validation-engine="validate[required]" /><label class="label align-left">NetApp submits internal order via SFDC </label>  
+									<input type="checkbox" class="field-style" name="ntap_sub_flag" id="ntap_sub_flag" <?php echo $ntap_sub_flag;?> <?php echo $acn_readonly;?> /><label class="label align-left">NetApp submits internal order via SFDC </label>  
 									<input type="text" name="ntap_sub_date" id="ntap_sub_date" class="field-style" size="30" placeholder="dd-mm-yyyy hh:mm:ss" style="left: 276px;position: absolute;top: 125px;" value="<?php echo $formArray['ntap_sub_date'];?>" <?php echo $acn_readonly;?> />
 								
-									<input type="checkbox" class="field-style" name="ntap_sch_flag" id="ntap_sch_flag" <?php echo $ntap_sch_flag;?> <?php echo $acn_readonly;?> data-validation-engine="validate[required]" style="margin-left:18px;"/><label class="label align-left">NetApp schedules installation </label>  
+									<input type="checkbox" class="field-style" name="ntap_sch_flag" id="ntap_sch_flag" <?php echo $ntap_sch_flag;?> <?php echo $acn_readonly;?> style="margin-left:18px;"/><label class="label align-left">NetApp schedules installation </label>  
 									<input type="text" name="ntap_sch_date" id="ntap_sch_date" class="field-style" size="30" placeholder="dd-mm-yyyy hh:mm:ss" style="left: 505px;position: absolute;top: 125px;" value="<?php echo $formArray['ntap_sch_date'];?>" <?php echo $acn_readonly;?> />												
 								
 								</li>

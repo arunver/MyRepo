@@ -156,6 +156,21 @@ class Form2 extends MySqlDriver {
 			   $res = $this->updateQry();
 			   
 			   if($res){
+
+					$to='arun.verma@netapp.com';
+					$name='Arun Verma';
+					$subject='USP Form2 Updated';
+					$body='<strong>Form2 has been updated successfully';
+
+					$mailValue = $this->sendMail($body, $to, $name, $subject);
+
+					if($mailValue != true)
+					{
+					$_SESSION['SESS_MSG'] = msgSuccessFail("fail",$mailValue);	  
+					echo"<script>window.location.href='form2.php'</script>";
+					exit;
+					}
+
 				   $_SESSION['SESS_MSG'] = msgSuccessFail("success","Form2 has been updated successfully!!!");	
 				   echo"<script>window.location.href='form3.php'</script>";
 				   exit;
@@ -312,6 +327,21 @@ class Form2 extends MySqlDriver {
 
 			   $res = $this->insertQry();
 			   if($res){
+
+			   		$to='arun.verma@netapp.com';
+					$name='Arun Verma';
+					$subject='USP Form2 Inserted';
+					$body='<strong>Form2 has been inserted successfully';
+
+					$mailValue = $this->sendMail($body, $to, $name, $subject);
+
+					if($mailValue != true)
+					{
+					$_SESSION['SESS_MSG'] = msgSuccessFail("fail",$mailValue);	  
+					echo"<script>window.location.href='form2.php'</script>";
+					exit;
+					}
+
 				   $_SESSION['SESS_MSG'] = msgSuccessFail("success","Form2 has been added successfully!!!");	
 				   echo"<script>window.location.href='form3.php'</script>";
 				   exit;
