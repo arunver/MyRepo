@@ -37,7 +37,13 @@ if(isset($_SESSION['form1_id']) || isset($_GET['data']))
 		
 		if(!empty($formArray))
 		{
-			$formObj->updateForm5($_POST,$form_id);
+			if(!empty($_GET['data']))
+				{
+					$formObj->updateForm5($_POST,$_GET['data'], $_SESSION['ADMIN_TYPE']);
+				}
+				else{
+					$formObj->updateForm5($_POST,base64_encode($_SESSION['form1_id']), $_SESSION['ADMIN_TYPE']);
+				}
 		}
 		else{
 			$formObj->addForm5($_POST);
@@ -48,7 +54,13 @@ if(isset($_SESSION['form1_id']) || isset($_GET['data']))
 }
 else
 {
-	echo"<script>location.href='form1.php'</script>";
+	if(!empty($_GET['data']))
+	{
+		echo "<script>window.location.href='form1.php?data=".$_GET['data']."'</script>";
+	}
+	else{
+		echo "<script>window.location.href='form1.php'</script>";
+	}
 }
 ?>
 
@@ -88,27 +100,27 @@ else
 			
 				<div id="step-5">
 					<h2 class="StepTitle">Installation, Acceptance, Usage, Billing</h2>				
-					<form class="form-style-9" id="form5" action="#" method="post" enctype="multipart/form-data">
+					<form class="form-style-9" id="form5" action="" method="post" enctype="multipart/form-data">
 						<FIELDSET style="width:410px;" class="label">
-						<LEGEND><b>Accenture User</b></LEGEND>
+						<LEGEND><b>Netapp User</b></LEGEND>
 							<ul>
 							<!--style="left: 127px;position: absolute;top: 162px;" 
 							style="left: 527px;position: absolute;top: 162px;"
 							-->
 								<li>
-									<input type="checkbox" class="field-style" name="acn_conf_flag" id="acn_conf_flag" <?php echo $acn_conf_flag;?> <?php echo $ntap_readonly;?> />  Accenture Completes Config per spec, then UAT *
-									<input type="text" name="acn_conf_date" id="acn_conf_date" class="field-style" size="32" placeholder="dd-mm-yyyy hh:mm:ss" style="margin-top:20px;" value="<?php echo $formArray['acn_conf_date'];?>" <?php echo $ntap_readonly;?> />
+									<input type="checkbox" class="field-style" name="ntap_conf_flag" id="ntap_conf_flag" <?php echo $ntap_conf_flag;?> <?php echo $acn_readonly;?> />  NetApp Completes Installation *
+									<input type="text" name="ntap_conf_date" id="ntap_conf_date" class="field-style" size="32" placeholder="dd-mm-yyyy hh:mm:ss" style="margin-top:20px;" value="<?php echo $formArray['ntap_conf_date'];?>" <?php echo $acn_readonly;?> />
 								</li>	
 							</ul>
 						
 						</FIELDSET>
 						
 						<FIELDSET style="width:410px;position:absolute;" class="label">
-						<LEGEND><b>NetApp User</b></LEGEND>
+						<LEGEND><b>Accenture User</b></LEGEND>
 							<ul>
 								<li>
-									<input type="checkbox" class="field-style" name="ntap_conf_flag" id="ntap_conf_flag" <?php echo $ntap_conf_flag;?> <?php echo $acn_readonly;?> />  NetApp Completes Installation *
-									<input type="text" name="ntap_conf_date" id="ntap_conf_date" class="field-style" size="32" placeholder="dd-mm-yyyy hh:mm:ss" style="margin-top:20px;" value="<?php echo $formArray['ntap_conf_date'];?>" <?php echo $acn_readonly;?> />
+									<input type="checkbox" class="field-style" name="acn_conf_flag" id="acn_conf_flag" <?php echo $acn_conf_flag;?> <?php echo $ntap_readonly;?> />  Accenture Completes Config per spec, then UAT *
+									<input type="text" name="acn_conf_date" id="acn_conf_date" class="field-style" size="32" placeholder="dd-mm-yyyy hh:mm:ss" style="margin-top:20px;" value="<?php echo $formArray['acn_conf_date'];?>" <?php echo $ntap_readonly;?> />
 								</li>	
 							</ul>
 						
@@ -117,7 +129,15 @@ else
 							<div class="loader">Loading</div>
 							<a id="finish" href="javascript:void(0);" class="buttonFinish">Finish</a>
 							<input type="submit" class="buttonNext" name="form1-next" id="next" value="Next"/>
-							<a id="previous" href="form4.php" class="buttonPrevious">Previous</a>
+							<?php 
+								if(!empty($_GET['data']))
+										{ 
+											echo "<a id='previous' href='form4.php?data=".$_GET['data']."' class='buttonPrevious'>Previous</a>";
+										} 
+										else{
+											echo "<a id='previous' href='form4.php' class='buttonPrevious'>Previous</a>";
+										}							
+								?>							
 					</div>
 					
 				<input name="form5_submit" type="hidden" value="1"/>	

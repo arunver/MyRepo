@@ -1,0 +1,11 @@
+<chart caption='nCloud Stage Pipeline' xAxisName='Phases' yAxisName='Application Phases' showValues='0'>
+
+   <set label='Assessment' value='6' />
+   <set label='Platform Design' value='1' />
+   <set label='Platform Build' value='9' />
+   <set label='Services Launch' value='1' />
+   <set label='Service Optimization' value='33' />
+   <set label='Strategic Planning' value='2' />
+   <set label='Canceled' value='9' />
+
+</chart>

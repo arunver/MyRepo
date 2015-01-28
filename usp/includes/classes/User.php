@@ -165,6 +165,8 @@ class User extends MySqlDriver {
 							$type = "accenture";
 							break;								
 						}
+						
+					//<li style="width:90px;height:80px;"><a href="'.(!empty($line->image) ? $line->image : 'images/noimage.jpg').'" title="'.ucwords($line->username).'"><img width="60px" height="60px" src="'.(!empty($line->image) ? $line->image : 'images/noimage.jpg').'" border="0"></a></li>
 					
 					$genTable .= '<div class="'.$highlight.'">
 								   <ul>
@@ -172,9 +174,7 @@ class User extends MySqlDriver {
 									class="checkbox"></li>
 									<li style="width:30px;">'.$i.'</li>			
 									<li style="width:100px;">'.stripslashes($line->userName).'</li>								
-									<li style="width:160px;">'.stripslashes($line->emailId).'</li>
-									<li style="width:80px;height:80px;"><a href="'.(!empty($line->image) ? $line->image : 'images/noimage.jpg').'" title="'.ucwords($line->username).'"><img width="60px" height="60px" src="'.(!empty($line->image) ? $line->image : 'images/noimage.jpg').'" border="0"></a></li>
-									
+									<li style="width:200px;">'.stripslashes($line->emailId).'</li>
 									<li style="width:80px;">'.$type.'</li>';
 										
 						$genTable .= '<li id='.$div_id.' style="width:50px; cursor:pointer;" onClick="javascript:changeStatus(\''.$div_id.'\',\''.$line->id.'\',\'manageUser\')">'.$status.'</li>';
@@ -186,7 +186,7 @@ class User extends MySqlDriver {
 				
 					$genTable .= '</li><li style="width:50px;">';
 								
-					$genTable .= "<a href='javascript:void(NULL);'  onClick=\"if(confirm('Are you sure to delete this Record  ?')){window.location.href='pass.php?action=manageUser&type=delete&id=".$line->id."&page=$page'}else{}\" ><img src='images/drop.png' height='16' width='16' border='0' title='Delete' /></a>";
+			//		$genTable .= "<a href='javascript:void(NULL);'  onClick=\"if(confirm('Are you sure to delete this Record  ?')){window.location.href='pass.php?action=manageUser&type=delete&id=".$line->id."&page=$page'}else{}\" ><img src='images/drop.png' height='16' width='16' border='0' title='Delete' /></a>";
 
 					$genTable .= '</li></ul></div>';
 					$i++;	

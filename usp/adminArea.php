@@ -23,7 +23,16 @@ include('includes/header.php');
 
 ?>
 <div id="nav-under-bg"><!-- --></div>
-<div class="welcome-text">Welcome to Administrative Panel of <?=SITENAME?></div>
+<?php 
+if($_SESSION['ADMIN_TYPE'] == 1)
+{
+	$admin_msg = "Administrative Panel of";
+}
+else{
+	$admin_msg = "";
+}
+?>
+<div class="welcome-text">Welcome to <?php echo $admin_msg." ".SITENAME?></div>
 <div style="margin-top:20px;"><?php /*?><? echo $_SESSION['SESS_MSG']; unset($_SESSION['SESS_MSG']); ?><?php */?></div>
 <form name="ecartFrm" method="post" action="pass.php?action=Welcommit&type=generatexml">
 					

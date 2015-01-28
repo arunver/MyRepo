@@ -24,8 +24,8 @@ if($current_page != 'signup.php')
 		<li class="item2"><a href="userlist.php" <?php $class=(($current_page == "userlist.php") ? " active":" ") ?> class="<?php echo $class;?>">User List <span><?php echo $userCount;?></span></a>		
 		</li>
 		
-		<li class="item3"><a href="#" <?php $class=(($current_page == "setting.php") ? " active":" ") ?> class="<?php echo $class;?>">Settings</a>	
-		</li>
+		<!--li class="item3"><a href="#" <?php $class=(($current_page == "setting.php") ? " active":" ") ?> class="<?php echo $class;?>">Settings</a>	
+		</li-->
 		
 		<li class="item4"><a href="logout.php" <?php $class=(($current_page == "logout.php") ? " active":" ") ?> class="<?php echo $class;?>">Logout</a>	
 		</li>

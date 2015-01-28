@@ -1,0 +1,190 @@
+<?php
+/**
+* Template Name: nCloud Metrics
+* This page generates Chart from CSV file dynamicallly provided at a particular location.
+* Used as a news-type home page.  It lists a featured section at the top and pulls in the sidebar-feature.php
+* file to sit beside the featured area.  In the normal content area, posts are listed by category.  These
+* categories must be selected in the 'Home Template Settings' section of the 'News Settings' page.  After
+* the category highlight section, a more articles section displays a set number of posts.
+*
+* @package News
+* @subpackage Template
+*/
+
+/* Set up a default array for posts we're not duplicating. */
+$do_not_duplicate = array();
+
+get_header(); ?>
+<link rel="stylesheet" type="text/css" media="screen" href="<?php echo get_template_directory_uri().'/webforms.css'; ?>" />
+<style>
+#content{
+width:52%;}
+input[type="file"]{
+font-size: 1.5em;border: none;}
+</style>
+<script language="JavaScript" src="dashboard/FusionCharts_Enterprise/JSClass/FusionCharts.js"></script>
+<script type="text/javascript" src="dashboard/js/fancyzoom.js"></script>
+<!-- End feature area. -->
+<?php get_sidebar('primary');?>
+<?php do_atomic( 'before_content' );
+// Before content hook ?>
+<div id="content">
+<?php do_atomic( 'open_content' ); // Open content hook ?>
+<div class="hfeed">
+
+<div class="hentry page publish post-1 odd author-admin" id="post-268">
+<div id="three-col-secondary">
+<!-- #sidebar-secondary .aside -->
+</div>
+<div class="entry-content">
+<h2 class="page-title"> nCloud Metrics</h2>
+<table style="border-collapse: collapse;width:500px;" border="0" cellpadding="5" cellspacing="5">
+
+<tr valign="top"><!-- #daebcc -->
+
+<!--' nCloud Application Status -->
+<tr>
+<td>
+<div id="feedF">
+<div align="center">
+<div id="chartdiv1">
+<?php
+# Include FusionCharts PHP Class
+include('dashboard/FusionCharts_Enterprise/Code/PHPClass/Includes/FusionCharts_Gen.php');
+#open the csv file in read mode
+$file_handle = fopen("dashboard/chart_data/prodCount.csv", "r");
+
+# Create Column2D chart Object
+$FA = new FusionCharts("Column2D","500","400");
+# set the relative path of the SWF file
+$FA->setSWFPath("dashboard/FusionCharts_Enterprise/Charts/");
+#  Set chart attributes
+$strParam="caption=ncloud Production Count; xAxisName=Quarter;yAxisName=Count;showValues='1';outCnvBaseFontSize='16';showPercentageValues='1';baseFontSize ='2'; outCnvBaseFontSize='16'";
+#Set chart style
+$FA->setChartParams($strParam);
+$FA->defineStyle("MyFirstFontStyle","font","font=Arial;size=16;color=000");
+$FA->applyStyle("CAPTION","MyFirstFontStyle");
+# add chart values and  category names
+while (!feof($file_handle) ) {
+$line_of_text = fgetcsv($file_handle);
+$FA->addChartData("".$line_of_text[1],"label=".$line_of_text[0]);
+}
+fclose($file_handle);
+?>
+<?php
+# Render Chart
+$FA->renderChart();
+?>
+</div></div></div></td></tr></table>
+
+<!--' New TABLE SPACE -->
+<div class="microSpace" style="margin-top: 1px"></div>
+<div align="center" style="width: 500px">
+<table style="border-collapse: collapse;width:500px;" border="0" cellpadding="5" cellspacing="5">
+<tr valign="top"><!-- #daebcc -->
+<!--' nCloud Applications Phase -->
+<tr>
+<td>
+<div id="feedF">
+<div align="center">
+<div id="chartdiv2">
+<?php
+# Include FusionCharts PHP Class
+#open the csv file in read mode
+$file_handle = fopen("dashboard/chart_data/GuestOS.csv", "r");
+# Create Pie2D chart Object
+$FC = new FusionCharts("Pie2D","600","300");
+# set the relative path of the SWF file
+$FC->setSWFPath("dashboard/FusionCharts_Enterprise/Charts/");
+#  Set chart attributes
+$strParam="caption=Guest OS;showValues='1'; showPercentageValues='1'";
+$FC->setChartParams($strParam);
+$FC->defineStyle("MyFirstFontStyle","font","font=Arial;size=16;color=000");
+$FC->applyStyle("CAPTION","MyFirstFontStyle");
+# add chart values and  category names
+while (!feof($file_handle) ) {
+$line_of_text = fgetcsv($file_handle);
+$FC->addChartData("".$line_of_text[1],"label=".$line_of_text[0]);
+}
+fclose($file_handle);
+?>
+<?php
+# Render Chart
+$FC->renderChart();
+?>
+</div>
+</center></div></div></td></tr></table></div>
+
+<div class="microSpace" style="margin-top: 1px"></div>
+<div align="center" style="width: 500px">
+<table style="border-collapse: collapse;width:500px;" border="0" cellpadding="5" cellspacing="5">
+<tr valign="top"><!-- #daebcc -->
+<tr>
+<td>
+<div id="feedF">
+<div align="center">
+<div id="chartdiv2">
+<div id="serverHeader" style="font-size:18px;font-weight:bold;color:black;">Compute Capacity </div>
+<table id="serverTable">
+<?php
+
+$num=0;
+if (($handle = fopen("dashboard/chart_data/serverCount.csv", "r")) !== FALSE) {
+while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+$num = count($data);
+}
+fclose($handle);
+}
+$file_handle = fopen("dashboard/chart_data/serverCount.csv", "r");
+while (!feof($file_handle) ) {
+$line_of_text = fgetcsv($file_handle);
+$count=0;
+?>
+<tr>
+<?php
+while( $count <$num )
+{
+?>
+<td><?php echo $line_of_text[$count] ?></td>
+<?php	$count++;} ?>
+</tr>
+<?php
+}	fclose($file_handle);
+?>
+</table></div></div></center></div></div></td></tr></table></div>
+<div class="microSpace" style="margin-top: 1px"></div>
+<div align="center" style="width: 500px">
+<table style="border-collapse: collapse;width:500px;" border="0" cellpadding="5" cellspacing="5">
+<tr valign="top"><!-- #daebcc -->
+<tr>
+<td>
+<div id="feedF">
+<div align="center">
+<div id="chartdiv2">
+<div id="serverHeader" style="font-size:18px;font-weight:bold;color:black;">Top 5 SBUs</div>
+<table id="sbuTable">
+<?php
+#open the csv file in read mode
+$fp = file('topBUs.csv', FILE_SKIP_EMPTY_LINES);
+$num=count($fp);
+$file_handle = fopen("dashboard/chart_data/topBUs.csv", "r");
+while (!feof($file_handle) ) {
+$line_of_text = fgetcsv($file_handle);
+?>
+<tr>
+<!-- Generate New Table for displaying top 5 BUs -->
+<td  style="text-align:center;font-weight:bold; font-size:14px;padding:3px;"><?php echo $line_of_text[0] ?></td>
+<?php } ?>
+</tr>
+<?php
+fclose($file_handle);
+?>
+</table></div></div></center></div></div></td></tr></table></div>
+</div></div></div><!-- .hfeed -->
+
+<?php do_atomic( 'close_content' ); // Close content hook ?>
+</div><!-- #content -->
+<?php get_sidebar('secondary');?>
+<?php do_atomic( 'after_content' ); // After content hook ?>
+
+<?php get_footer(); ?>

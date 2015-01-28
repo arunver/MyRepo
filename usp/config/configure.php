@@ -40,4 +40,5 @@ define('USERTHUMB',BASEUPLOADFILEPATH."user/thumb/");
 define('USERMAIN',BASEUPLOADFILEPATH."user/main/");
 
 define('DEFAULTDATEFORMAT', "d-m-Y h:m:i G:ia");
+define('SEARCHTEXT', "USERNAME");
 ?>

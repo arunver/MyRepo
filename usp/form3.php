@@ -16,12 +16,12 @@ $obj = new validationclass();
 
 /* echo "<pre>";
 print_r($_SESSION);
-exit; */
-
+exit; 
+*/
 if(isset($_SESSION['form1_id']) || isset($_GET['data']))
 {
 	$form_id = base64_decode($_GET['data']);
-
+		
 	if(!empty($form_id))
 	{
 		//$_SESSION['form1_id'] = $form_id;
@@ -39,9 +39,15 @@ if(isset($_SESSION['form1_id']) || isset($_GET['data']))
 		
 		$_POST = postwithoutspace($_POST);
 		
-		if(!empty($formArray))
+		if(!empty($formArray) && isset($_GET['data']))
 		{
-			$formObj->updateForm3($_POST,$form_id);
+			if(!empty($_GET['data']))
+				{
+					$formObj->updateForm3($_POST, $_GET['data'], $_SESSION['ADMIN_TYPE']);
+				}
+				else{
+					$formObj->updateForm3($_POST, base64_encode($_SESSION['form1_id']), $_SESSION['ADMIN_TYPE']);
+				}
 		}
 		else{
 			$formObj->addForm3($_POST);
@@ -54,7 +60,13 @@ if(isset($_SESSION['form1_id']) || isset($_GET['data']))
 }
 else
 {
-	echo"<script>window.location.href='form1.php'</script>";
+	if(!empty($_GET['data']))
+	{
+		echo "<script>window.location.href='form1.php?data=".$_GET['data']."'</script>";
+	}
+	else{
+		echo "<script>window.location.href='form1.php'</script>";
+	}	
 }
 ?>
 
@@ -101,7 +113,7 @@ else
 				<div id="step-3">
 				<h2 class="StepTitle">Pre-Order Commitment and Preparation Control Sheet</h2>	
 				<h1>Text: Complete document set, check box showing each document is complete. Once document set has been completed, Accenture will approve the document set below, which will show contract acceptance.</h1>
-					<form class="form-style-9" id="form3" action="#" method="post" enctype="multipart/form-data">
+					<form class="form-style-9" id="form3" action="" method="post" enctype="multipart/form-data">
 							<ul>					
 							
 							<li>
@@ -132,12 +144,6 @@ else
 							<input type="text" name="site_conf_date" id="site_conf_date" class="field-style" size="50" placeholder="dd-mm-yyyy hh:mm:ss" value="<?php echo $formArray['site_conf_date'];?>" />
 							</li>
 							
-							<li>
-							<label class="label align-left"> BOM  </label> 
-							<input type="file" name="bom_file" id="bom_file" placeholder="Upload Files"> 							
-							<a href="<?php echo ((!empty($formArray['bom_file'])) ? SITEPATH.$formArray['bom_file']: "javascript:void(0);");?>"><input type="button" class="attachment"/></a>
-							<input type="text" name="bom_date" id="bom_date" class="field-style" size="50" placeholder="dd-mm-yyyy hh:mm:ss" value="<?php echo $formArray['bom_date'];?>" />
-							</li>
 												
 							<br>
 							
@@ -164,7 +170,17 @@ else
 								<div class="loader">Loading</div>
 								<a id="finish" href="javascript:void(0);" class="buttonFinish buttonDisabled">Finish</a>
 								<input type="submit" class="buttonNext" name="form1-next" id="next" value="Next"/>
-								<a id="previous" href="form2.php" class="buttonPrevious">Previous</a>
+								
+							<?php 
+								if(!empty($_GET['data']))
+										{ 
+											echo "<a id='previous' href='form2.php?data=".$_GET['data']."' class='buttonPrevious'>Previous</a>";
+										} 
+										else{
+											echo "<a id='previous' href='form2.php' class='buttonPrevious'>Previous</a>";
+										}							
+							 ?>
+
 						</div>
 						<input name="form3_submit" type="hidden" value="1"/>
 				</form>

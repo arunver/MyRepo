@@ -1,0 +1,5 @@
+https://netappdev.service-now.com/login.do
+
+UserID/PWD: amitk5/amitk5
+
+If you type Managed documents in the left navigation filter you can find the application. Please find the screenshot below.

@@ -83,14 +83,14 @@ $userObj = new User();
         </li>
         <li style="width:50px;">SL.No</li>
         <li style="width:100px;">User Name</li>      
-        <li style="width:180px;">
+        <li style="width:200px;">
           <?=orderBy("userlist.php?searchtxt=$searchtxt","email","Email")?>
         </li>
-          <li style="width:90px;"> Image</li>
-          <li style="width:100px;">User Type</li>
+          <!--li style="width:100px;"> Image</li-->
+          <li style="width:110px;">User Type</li>
           <li style="width:50px;">Status</li>
           <li style="width:50px;">View</li>        
-          <li style="width:50px;">Delete</li>
+          <!--li style="width:50px;">Delete</li-->
       </ul>
     </div>
     <?php echo $userObj->userFullInformation();

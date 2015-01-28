@@ -581,7 +581,7 @@ select{border:1px solid #CCCCCC;
 /* forms html css */
 
 .form-style-9{
-    max-width: 886px;
+    width:auto;
     background: #FAFAFA;
     padding: 10px;
     margin: 20px auto;
@@ -675,6 +675,41 @@ select{border:1px solid #CCCCCC;
 } 
 
 .form-style-9 ul li input[type=button].attachment { background:url(../images/attachment.png) left top no-repeat; width:53px; height:24px; margin:10px 0 0 0; border:0px; cursor:pointer;} 
+
+/* table .form-style-9 */
+
+.form-style-9 table label.label{
+	margin: 0;
+	padding: 0;	
+	width:10%;
+	min-width:164px;
+	display: inline-block;	
+	font-weight: bold;
+}
+
+.form-style-9 table td  .field-style{
+	margin-right: 30px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding: 8px;
+    outline: none;
+    border: 1px solid #B0CFE0;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+
+}
+.form-style-9 table td  .field-style:focus{
+    box-shadow: 0 0 5px #B0CFE0;
+    border:1px solid #B0CFE0;
+}
+
+.form-style-9 table input[type=button].attachment { background:url(../images/attachment.png) left top no-repeat; width:53px; height:24px; margin:10px 0 0 0; border:0px; cursor:pointer;} 
+
+/* table td */
+
 
 /*    Horizontal menu wizard  */ 
 	.breadcrumb {
@@ -1268,6 +1303,16 @@ select{border:1px solid #CCCCCC;
 	width:100%;
 	}
 
+.error_message{
+	font-size:14px;
+	font-weight:bold;
+	color:#FF0000;
+}
+.small_error_message{
+	font-size:12px;
+	color:#FF0000;
+}	
+	
 /* end view li css */
 
 /* admin css end

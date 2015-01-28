@@ -1,0 +1,21 @@
+Amit,
+
+Thank you for sharing this. 
+
+Some of things that I see that need to be changed are listed below:
+1.	The “Customer Needs Profile Document *”  upload feature on page 1, should be moved to the top of page 2. (this would follow along with the stages)
+2.	The mandatory fields should only be on page 1. (this way we can navigate to the other pages without having to fill in data. We were told that the user may not need to fill these forms out in order, with the exception of page 1)
+3.	Formatting issue on page 1; NetApp contact info boxes are slightly lower than the other side. (Issue using I.E.8 to view, In Chrome it looks great)
+4.	Formatting issue on page 2; text line falls under the date boxes. (Issue using IE8 to view, In Chrome it looks great)
+5.	Page 3; the “Accenture Completes Site Prep” section, only needs to be a “check box” and “date” field. No need for the navigation and upload feature.
+
+Questions:
+1.	After the 1st page is completed (mandatory), we’d like to be able to use the “stage” bar at the top to jump to each page. Is that possible?
+2.	Assuming we have more than one form entered, how would we recall a specific form upon log in? List on the home page? Search function based on form ID? Or other?
+3.	One concern is that when I log in as a NetApp user, I can approve Accenture actions (check their boxes)? They should be inactive correct? Only admin should have both check boxes active.
+4.	Same as above for the admin approval check boxes.
+
+These are the issues that I see currently. Overall it looks terrific. Thank you for your teams efforts, we really appreciate it. Please let us know the eta of completion as soon as you re-evaluate the above changes.
+
+Cheers,
+Mike

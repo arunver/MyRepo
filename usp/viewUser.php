@@ -50,9 +50,9 @@ switch($result[userType])
 	  <li class="label">User Type<span class="spancolor"> </span></li>
       <li class="sap"><?php echo $type ? $type : "--";	?></li>	
 	  
-      <li class="label">User Image<span class="spancolor"> </span></li>
+      <!--li class="label">User Image<span class="spancolor"> </span></li-->
       <?php 
-      echo '<li class="sap"><a href="'.(!empty($result[image]) ? $result[image] : 'images/noimage.jpg').'" title="'.ucwords($result[userName]).'"><img width="60px" height="60px" src="'.(!empty($result[image]) ? $result[image] : 'images/noimage.jpg').'" border="0"></a></li>';  
+     // echo '<li class="sap"><a href="'.(!empty($result[image]) ? $result[image] : 'images/noimage.jpg').'" title="'.ucwords($result[userName]).'"><img width="60px" height="60px" src="'.(!empty($result[image]) ? $result[image] : 'images/noimage.jpg').'" border="0"></a></li>';  
       ?>
        
     <li class="label">Company Name<span class="spancolor"> </span></li>

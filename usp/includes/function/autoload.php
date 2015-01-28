@@ -562,7 +562,7 @@ function getExtension($str) {
 		return date_format($date, "$format");
 	}
 	
-	function genPassword($len = 8) {  
+	function genPassword($len = 10) {  
 		$chars = str_split('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#');  	
 		$pwd = '';  
 		  
@@ -571,6 +571,28 @@ function getExtension($str) {
 		return $pwd;  
     }  
 	
+	function genPoPassword($len = 10) {  
+		$chars = str_split('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#');  	
+		$pwd = '';  
+		  
+		for($i=0; $i < $len; $i++)  
+		$pwd .= $chars[rand(1, sizeof($chars)) -1];  
+		return $pwd;  
+    }  
+	
+	function genSoPassword($len = 10) {  
+		$chars = str_split('0123456789');  	
+		$pwd = '';  
+		  
+		for($i=0; $i < $len; $i++)  
+		$pwd .= $chars[rand(1, sizeof($chars)) -1];  
+		return $pwd;  
+    }  
+	
+	function utf2latin($text) {
+		$text=htmlentities($text,ENT_COMPAT,'UTF-8');
+		return html_entity_decode($text,ENT_COMPAT,'ISO-8859-1');
+	} 
 //*********************** done by ashish *************
 
 /*if($_SESSION['DEFAULTCURRENCYID'] == ''){

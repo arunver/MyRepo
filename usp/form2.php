@@ -14,6 +14,7 @@ $generalObj = new GeneralFunctions();
 require_once('validation_class.php');
 $obj = new validationclass();
 
+
 if(isset($_SESSION['form1_id']) || isset($_GET['data']))
 {
 
@@ -43,6 +44,7 @@ else
 	$pcsn_no = $formObj->fetchValue(TBL_FORM1, "pcsn_num", "form1_id='".$_SESSION['form1_id']."'");
 }
 
+;
 	if(isset($_POST['form2_submit'])) {
 		 $_SESSION['form2_isdone'] = $_POST['form2_submit'];
 		
@@ -50,23 +52,29 @@ else
 	  
 	  if(!empty($formArray) && isset($_GET['data']))
 	  {
-		$formObj->updateForm2($_POST,$form_id);
+		if(!empty($_GET['data']))
+		{			
+			$formObj->updateForm2($_POST,$_GET['data'], $_SESSION['ADMIN_TYPE']);
+		}
+		else{			
+			$formObj->updateForm2($_POST,base64_encode($_SESSION['form1_id']), $_SESSION['ADMIN_TYPE']);
+		}
 	  }
-	  else{
-		$formObj->addForm2($_POST);
-	  }
-	  
-	  
-	  exit;
-	  
-	  
-	}
-	
+	  else{	
+			$formObj->addForm2($_POST);
+	  }	  
+	  exit;	  
+	}	
 }
 else
 {
-	echo"<script>window.location.href='form1.php'</script>";
-
+	if(!empty($_GET['data']))
+	{
+		echo "<script>window.location.href='form1.php?data=".$_GET['data']."'</script>";
+	}
+	else{
+		echo "<script>window.location.href='form1.php'</script>";
+	}	
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -81,9 +89,56 @@ else
 			fillclick("acn_agr_date","acn_agr_flag");
 			fillclick("ntap_agr_date","ntap_agr_flag");
 			fillclick("admin_action_date","admin_action_flag");
+
+			var userType = "<?php echo $_SESSION['ADMIN_TYPE'] ?>";
+			
+			var adminFlag = $('#admin_action_flag').prop('checked');
+			if(adminFlag == false )
+			{
+				if(userType == 2)
+				{
+					$("#ntap_agr_flag").attr("disabled", false);
+					$("#ntap_agr_date").attr("disabled", false);
+					$("#acn_agr_flag").attr("disabled", true);
+					$("#acn_agr_date").attr("disabled", true);
+				}
+				else if(userType == 3)
+				{
+					$("#acn_agr_flag").attr("disabled", false);
+					$("#acn_agr_date").attr("disabled", false);
+					$("#ntap_agr_flag").attr("disabled", true);
+					$("#ntap_agr_date").attr("disabled", true);
+				}
+				
+
+			
+
+				$('#profile_doc_file').attr("disabled",false);
+				$('#profile_doc_date').attr("disabled",false);
+
+				$('#config_spec_file').attr("disabled",false);
+				$('#config_spec_date').attr("disabled",false);
+
+
+			}
+			else
+			{
+				$("#acn_agr_flag").attr("disabled", true);
+				$("#acn_agr_date").attr("disabled", true);
+
+				$("#ntap_agr_flag").attr("disabled", true);
+				$("#ntap_agr_date").attr("disabled", true);
+
+				$('#profile_doc_file').attr("disabled",true);
+				$('#profile_doc_date').attr("disabled",true);
+
+				$('#config_spec_file').attr("disabled",true);
+				$('#config_spec_date').attr("disabled",true);
+			}
 		});	
 
 	</script>
+	
 	
 </head>
 
@@ -113,7 +168,7 @@ else
 					<h2 class="StepTitle">Requirement To Configuration</h2>	
 					<h1>PCSN : [<?php echo $pcsn_no; ?>]</h1>
 					<h1>Note : Sample text that explains the process of attaching the needed documents to the form TBD</h1>
-					<form class="form-style-9" id="form2" action="#" method="post" enctype="multipart/form-data">
+					<form class="form-style-9" id="form2" action="" method="post" enctype="multipart/form-data">
 					
 							<ul>
 							
@@ -133,7 +188,7 @@ else
 							
 							<a href="<?php echo ((!empty($formArray['config_spec_file'])) ? SITEPATH.$formArray['config_spec_file']: "javascript:void(0);");?>"><input type="button" class="attachment"/></a>
 							
-							<input type="text" name="config_spec_date" class="field-style" size="50" placeholder="dd-mm-yyyy hh:mm:ss" value="<?php echo $formArray['config_spec_date'];?>" />
+							<input type="text" name="config_spec_date" id="config_spec_date" class="field-style" size="50" placeholder="dd-mm-yyyy hh:mm:ss" value="<?php echo $formArray['config_spec_date'];?>" />
 							</li>
 							<br/>
 							<li>
@@ -171,7 +226,16 @@ else
 									<div class="loader">Loading</div>
 									<a id="finish" href="javascript:void(0);" class="buttonFinish buttonDisabled">Finish</a>
 									<input type="submit" class="buttonNext" name="form1-next" id="next" value="Next"/>
-									<a id="previous" href="form1.php" class="buttonPrevious">Previous</a>
+
+									<?php 
+										if(!empty($_GET['data']))
+										{ 
+											echo "<a id='previous' href='form1.php?data=".$_GET['data']."' class='buttonPrevious'>Previous</a>";
+										} 
+										else{
+											echo "<a id='previous' href='form1.php' class='buttonPrevious'>Previous</a>";
+										}
+									?>
 							</div>
 							
 						<input name="form2_submit" type="hidden" value="1"/>

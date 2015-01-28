@@ -3,7 +3,8 @@
 
 global $config;
 @include("config/configure.php");
-@include 'includes/class.phpmailer.php';
+
+
 require_once(PATH."config/tables.php");
 
 
@@ -777,35 +778,6 @@ function getFormArray($formId, $table){
 	return $dataArray;
 }
 
-function sendMail($body, $to, $name, $subject)
-{
-	$mail = new PHPMailer(); 
-
-
-	$mail->SMTPAuth   = true;
-	$mail->Host       = "smtp.netapp.com";
-	$mail->Port       = 25; 
-
-	$mail->SetFrom('no-reply@netapp.com', 'No Reply');
-	$mail->AddAddress($to, $name); 
-	$body.='<br/><br/><br/><div style="margin-left:150px;">
-			*** This is an automatically generated email, please do not reply ***';
-
-	$mail->Subject    = $subject;
-
-	$mail->MsgHTML($body);
-	if(!$mail->Send())
-	{
-		$msg = '';
-		$msg .= "Message could not be sent. <p>";
-		$msg .="Mailer Error: " . $mail->ErrorInfo;
-		return $msg;		               	   			
-	   
-	}
-	else{
-		return true;
-	}
-}
 
 //some custom db function end here  
 

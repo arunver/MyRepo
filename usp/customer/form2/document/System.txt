@@ -1,0 +1,17 @@
+SERVERS: WA19487USPDEV01
+IP Address: 10.250.240.61
+URL: https://control.tier3.com/manage#/wa1/server/WA19487USPDEV01
+
+
+
+Admin: 		root
+Credentials: 	netapp123!
+
+
+
+Mysql "root":  passwd: usptool
+
+
+GRANT ALL ON *.* TO 'root'@'%';
+
+FLUSH PRIVILEGES ;

@@ -27,6 +27,28 @@ $obj = new validationclass();
 
 $form_id = base64_decode($_GET['data']);
 
+/* 
+
+$opportunity_detail = "Opportunity Specifics including: \n
+&#8226; Use Case, 
+&#8226; Application, 
+&#8226; # Data Centers, 
+&#8226; Location(s) of Primary, Secondary &#8230; Data Centers, 
+&#8226; Migration or Net New Service,
+&#8226; Capacity and Performance Requirements &#8212; initial 6 months and over time (i.e., growth rates after migration)
+&#8226; Restrictions pertaining to personnel admitted to site (i.e., level of security clearance required"; 
+
+*/
+
+$opportunity_detail = "Opportunity Specifics including: \n
+→  Use Case, 
+→  Application, 
+→  # Data Centers, 
+→  Location(s) of Primary, Secondary … Data Centers, 
+→  Migration or Net New Service,
+→  Capacity and Performance Requirements – initial 6 months and over time (i.e., growth rates after migration)
+→  Restrictions pertaining to personnel admitted to site (i.e., level of security clearance required)";
+
 
 if(!empty($form_id))
 {
@@ -37,6 +59,9 @@ if(!empty($form_id))
 } 
 
 //$formArray = $formObj->getFormArray(1,'form1');
+
+$gov_end_user 	= (($formArray['gov_end_user'] == 'on') ? 'checked="checked"' : '');
+$rest_ph_home 	= (($formArray['rest_ph_home'] == 'on') ? 'checked="checked"' : '');
 
 /* echo "<pre>";
 print_r($_SESSION);
@@ -55,7 +80,14 @@ if(isset($_POST['form1_submit'])) {
   
   if(!empty($formArray))
   {
-	$formObj->updateForm1($_POST,$_GET['data'], $_SESSION['ADMIN_TYPE']);
+  	if(!empty($_GET['data']))
+  	{
+  		$formObj->updateForm1($_POST,$_GET['data'], $_SESSION['ADMIN_TYPE']);
+  	}
+  	else{
+  		$formObj->updateForm1($_POST,base64_encode($_SESSION['form1_id']), $_SESSION['ADMIN_TYPE']);
+  	}
+	
   }
   else{
 	$formObj->addForm1($_POST);
@@ -105,48 +137,56 @@ if(isset($_POST['form1_submit'])) {
 					<div id="step-1">	
 						<h2 class="StepTitle">Initiate Provisioning Of Service</h2>
 						 <div class="form-style-3">
-							<form class="form-style-9" id="form1" action="#" method="post" enctype="multipart/form-data">
+							<form class="form-style-9" id="form1" action="" method="post" enctype="multipart/form-data">
 							
 								<ul>
 								<li>
-									<label class="label align-left">Accenture Lead(ACN) <span class="spancolor">*</span></label>
-									<input type="text" placeholder="Accenture Lead" class="field-style field-split" name="acn_lead" id="acn_lead" value="<?php echo $formArray['acn_lead'];?>" <?php echo $ntap_readonly;?>/>
+									<label class="label align-right">NetApp Lead <span class="spancolor">*</span></label>
+									
+									<input type="text" placeholder="NetApp Lead" class="field-style field-split" name="ntap_lead" id="ntap_lead" value="<?php echo $formArray['ntap_lead'];?>" <?php echo $acn_readonly;?>/>
 
-									<label class="label align-right">NetApp Lead(NTAP) <span class="spancolor">*</span></label>
-									<input type="text" placeholder="NetApp Lead(NTAP)" class="field-style field-split align-right" name="ntap_lead" id="ntap_lead" value="<?php echo $formArray['ntap_lead'];?>" data-validation-engine="validate[required]" <?php echo $acn_readonly;?>/>
+								
+									<label class="label align-left">Accenture Lead <span class="spancolor">*</span></label>
+									<input type="text" placeholder="Accenture Lead" class="field-style field-split align-right" name="acn_lead" id="acn_lead" value="<?php echo $formArray['acn_lead'];?>" data-validation-engine="validate[required]" <?php echo $ntap_readonly;?>/>
 								</li>
 								
 								<li>
 									<label class="label align-left">Email Address <span class="spancolor">*</span></label>
-									<input type="text" placeholder="Email Address" class="field-style field-split" name="acn_email" id="acn_email" data-validation-engine="validate[required,custom[email]" value="<?php echo $formArray['acn_email'];?>" <?php echo $ntap_readonly;?>>
+									<input type="text" placeholder="Email Address" class="field-style field-split" name="ntap_email" id="ntap_email" data-validation-engine="validate[required,custom[email]" value="<?php echo $formArray['ntap_email'];?>" <?php echo $acn_readonly;?>>
 									
 									<label class="label align-right">Email Address <span class="spancolor">*</span></label>
-									<input type="text" placeholder="Email Address" class="field-style field-split align-right" name="ntap_email" id="ntap_email" data-validation-engine="validate[required]" value="<?php echo $formArray['ntap_email'];?>" <?php echo $acn_readonly;?>>
+									<input type="text" placeholder="Email Address" class="field-style field-split align-right" name="acn_email" id="acn_email" data-validation-engine="validate[required]" value="<?php echo $formArray['acn_email'];?>" <?php echo $ntap_readonly;?>>
 								</li>
 								
 								<li>
 									<label class="label align-left">Role <span class="spancolor">*</span></label>
-									<input type="text" placeholder="Role" class="field-style field-split" name="acn_role" id="acn_role" data-validation-engine="validate[required]" value="<?php echo $formArray['acn_role'];?>" <?php echo $ntap_readonly;?>>
+									<input type="text" placeholder="Role" class="field-style field-split" name="ntap_role" id="ntap_role" data-validation-engine="validate[required]" value="<?php echo $formArray['ntap_role'];?>" <?php echo $acn_readonly;?>>
 									
 									<label class="label align-right">Role <span class="spancolor">*</span></label>
-									<input type="text" placeholder="Role" class="field-style field-split align-right" name="ntap_role" id="ntap_role" data-validation-engine="validate[required]" value="<?php echo $formArray['ntap_role'];?>" <?php echo $acn_readonly;?>>
+									<input type="text" placeholder="Role" class="field-style field-split align-right" name="acn_role" id="acn_role" data-validation-engine="validate[required]" value="<?php echo $formArray['acn_role'];?>" <?php echo $ntap_readonly;?>>
 								</li>
 								
 								<li>
 									<label class="label align-left">Phone Number <span class="spancolor">*</span></label>
-									<input type="text" placeholder="Phone Number" class="field-style field-split" name="acn_phone" id="acn_phone" data-validation-engine="validate[required,custom[phone],minSize[8],maxSize[18]]" value="<?php echo $formArray['acn_phone'];?>" <?php echo $ntap_readonly;?>>
+									<input type="text" placeholder="Phone Number" class="field-style field-split" name="ntap_phone" id="ntap_phone" data-validation-engine="validate[required,custom[phone],minSize[10],maxSize[18]]" value="<?php echo $formArray['ntap_phone'];?>" <?php echo $acn_readonly;?>>
 									
 									<label class="label align-right">Phone Number <span class="spancolor">*</span></label>
-									<input type="text" placeholder="Phone Number" class="field-style field-split align-right" name="ntap_phone" id="ntap_phone" data-validation-engine="validate[required,custom[phone],minSize[8],maxSize[18]]" value="<?php echo $formArray['ntap_phone'];?>" <?php echo $acn_readonly;?>>
+									<input type="text" placeholder="Phone Number" class="field-style field-split align-right" name="acn_phone" id="acn_phone" data-validation-engine="validate[required,custom[phone],minSize[10],maxSize[18]]" value="<?php echo $formArray['acn_phone'];?>" <?php echo $ntap_readonly;?>>
 								</li>
 								
 								<br><hr><br>	
 								
 								<li>
 									<label class="label align-left">Provisioning Case Serial Number (PCSN) <span class="spancolor">*</span></label>
-									<input type="text" placeholder="Provisioning Case Serial Number (PCSN)" class="field-style field-split" name="pcsn_num" id="pcsn_num" data-validation-engine="validate[required]" value="<?php echo (($formArray['pcsn_num']) ?  $formArray['pcsn_num'] : genPassword());?>">
-								</li>	
+									<input type="text" placeholder="Provisioning Case Serial Number (PCSN)" class="field-style field-split" name="pcsn_num" id="pcsn_num" data-validation-engine="validate[required]" value="<?php echo (($formArray['pcsn_num']) ?  $formArray['pcsn_num'] : genPassword());?>" readonly="true">
+												
+									<input type="checkbox" class="field-style" name="gov_end_user" id="gov_end_user" <?php echo $gov_end_user;?> /><label class="label align-left">Government end-user </label>  									
 								
+									<input type="checkbox" class="field-style" name="rest_ph_home" id="rest_ph_home" <?php echo $rest_ph_home;?> style="margin-left:18px;"/><label class="label align-left">Restrictions on Phone Home Data Exports </label>  
+									
+								
+								</li>	
+
 								
 								<li>
 									<label class="label align-left">Site Location <span class="spancolor">*</span></label>
@@ -154,11 +194,11 @@ if(isset($_POST['form1_submit'])) {
 								</li>
 								
 								<li>
-								<label class="label align-left">Requirement Descriptions <span class="spancolor">*</span></label>
-								<textarea placeholder="Message" class="field-style" id="req_detail" name="req_detail" data-validation-engine="validate[required]"><?php echo $formArray['req_detail'];?></textarea>
+								<label class="label align-left" style="float:left;">Opportunity Detail <span class="spancolor">*</span></label>
+								<textarea placeholder="Opportunity Detail" 
+								class="field-style" id="req_detail" name="req_detail" data-validation-engine="validate[required]" style="height: 190px;
+    width: 585px;"><?php echo (($formArray['req_detail']) ? html_entity_decode($formArray['req_detail']) : $opportunity_detail);?></textarea>   
 								</li>
-								
-								
 								
 								</ul>	
 				
