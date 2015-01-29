@@ -1,11 +1,26 @@
 # BEGIN htaccess
 <IfModule mod_rewrite.c>
-Options -Indexes +FollowSymLinks
+
+Options All -Indexes 
+Options +FollowSymLinks
 
 RewriteEngine on 
 RewriteCond %{HTTP_REFERER} !^http://(www\.)?localhost [NC] 
 RewriteCond %{HTTP_REFERER} !^http://(www\.)?localhost.*$ [NC] 
 RewriteRule \.(php|css)$ - [F]
+
+
+#ADDED TO PASS SECURITY METRICS XSS CROSS SITE SCRIPTING ERRORS
+RewriteCond %{QUERY_STRING} base64_encode.*\(.*\) [OR]
+RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} (\<|%3C).*iframe.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+RewriteRule ^(.*)$ 404.php [L]
+RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+RewriteRule .* - [F]
+#END OF XSS FIX
+
 
 </IfModule>
 

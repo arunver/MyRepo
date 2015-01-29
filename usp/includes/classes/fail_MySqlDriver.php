@@ -1,5 +1,5 @@
 <?php
-
+//@author: Arun Verma
 global $config;
 @include("config/configure.php");
 require_once(PATH."config/tables.php");
